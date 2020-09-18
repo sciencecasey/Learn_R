@@ -14,3 +14,4 @@ read_csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/comma-su
        title="Is the word 'data' plural or singular?") +
   theme_classic()
 
+#this is the test from terminal, is it working? 
