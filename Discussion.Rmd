@@ -11,16 +11,19 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Working with Mosaic and MosaicCalc
 
-First you'll need to download the packages, with their dependencies.
-```{r setup}
-install.packages("mosaic", "mosaicCalc")
-```
-Next, load the packages
-```{r setup2}
-library("mosaic", "mosaicCalc")
+First you'll need to download the packages, and load them with these commands:
+```{r setup1}
+#install.packages("mosaic", "mosaicCalc")
+#library("mosaic")
+#library("mosaicCalc")
 ```
 
-### How Mosaic Works
+```{r setup2, include=FALSE}
+library("mosaic")
+library("mosaicCalc")
+```
+
+## Using Mosaic
 ## example using the antiDerivative symbolic function:
 The part of the question greater outside [-1:1]
 
@@ -47,8 +50,9 @@ lteq1 = antiD(1-abs(y) ~ y, lower.bound = -1)
 ```
 
 
-# Graphing our solutionw
-This is what we're here for. Sure, R can solve but online solvers are more elegant.  The strength of R is how easy it is to get started visualizing data without a lot of background knowledge of programming.  
+## Graphing our solution
+This is what we're here for. Sure, R can solve but online solvers are more elegant.  The strength of R is how easy it is to get started visualizing data without a lot of background knowledge of programming. 
+
 Mosaic (the package we're using) builds on top of a robust package called Lattice.  If you desire, this is a great place to make really flexible graphs.  Mosaic tries to simplify it- so we're starting there. 
 ```{r graph}
 plotFun(antiD(1-abs(y) ~ y), y.lim = range(-2,2), xlim = range(-2,2), 
@@ -56,6 +60,6 @@ plotFun(antiD(1-abs(y) ~ y), y.lim = range(-2,2), xlim = range(-2,2),
 ```
 
 
-# Conclusion
+### Conclusion
 Yes! That's it- getting started with R is really easy. Just download R studio and use the interactive help functions and you're golden.  
 The main frustration I have that you might want to know ahead of time-- this is an open source project and some people aren't great maintainers of their documentation, so you'll find old tutorials that use depricated functions frequently.  Try focusing on the newest available tutorials to avoid this!
