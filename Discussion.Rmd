@@ -1,0 +1,61 @@
+---
+title: "Discussion_3.4.9"
+author: "CaseyJayne"
+date: "9/22/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Working with Mosaic and MosaicCalc
+
+First you'll need to download the packages, with their dependencies.
+```{r setup}
+install.packages("mosaic", "mosaicCalc")
+```
+Next, load the packages
+```{r setup2}
+library("mosaic", "mosaicCalc")
+```
+
+### How Mosaic Works
+## example using the antiDerivative symbolic function:
+The part of the question greater outside [-1:1]
+
+Note: the variable inputs are listed to the right of the tilde, the funciton itself to the inputs (this tells R what to derivative solve for)
+```{r demo, echo=TRUE}
+gt1 = antiD(0 ~y)
+print(gt1)
+```
+
+## Example using mosaic's Derivative solver:
+Same tilde logic (this is porblem 3.4.15)
+Note: the parenthesis around the outside tells R to print output immediately
+
+```{r derivative}
+(prob_15_D= D(1/(1+exp(-y)) ~y))
+```
+
+Finally, the problem we're working with.
+We want the antiderivative, which is saved but is not pretty due to absolute value,so we'll print the solved version without the absolute value
+```{r antiD}
+lteq1 = antiD(1-abs(y) ~ y, lower.bound = -1)
+
+(modified_lteq1 = antiD(1-y ~ y, lower.bound = -1))
+```
+
+
+# Graphing our solutionw
+This is what we're here for. Sure, R can solve but online solvers are more elegant.  The strength of R is how easy it is to get started visualizing data without a lot of background knowledge of programming.  
+Mosaic (the package we're using) builds on top of a robust package called Lattice.  If you desire, this is a great place to make really flexible graphs.  Mosaic tries to simplify it- so we're starting there. 
+```{r graph}
+plotFun(antiD(1-abs(y) ~ y), y.lim = range(-2,2), xlim = range(-2,2), 
+        ylab = "Probability", xlab = "y input")
+```
+
+
+# Conclusion
+Yes! That's it- getting started with R is really easy. Just download R studio and use the interactive help functions and you're golden.  
+The main frustration I have that you might want to know ahead of time-- this is an open source project and some people aren't great maintainers of their documentation, so you'll find old tutorials that use depricated functions frequently.  Try focusing on the newest available tutorials to avoid this!
