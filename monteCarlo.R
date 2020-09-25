@@ -10,3 +10,5 @@ for(k in 1:1000){
   possible[k] = result
 }
 summary(possible)
+library(lattice)
+densityplot(possible)
