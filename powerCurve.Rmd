@@ -1,0 +1,61 @@
+---
+title: "Power Curve"
+author: "CaseyJayne"
+date: "11/3/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Decision rule
+
+* alpha: .05
+* null: mu is 60
+* alternative: mu not equal to 60
+* standard deviation: 4
+* sample size: 16
+
+```{r variableSetup}
+h0 = 60
+sd = 4
+n = 16
+alpha = .05
+left = qnorm(alpha/2)*sd/sqrt(n) + h0 #critical value
+right = qnorm(1-alpha/2)*sd/sqrt(n) +h0 #critical value
+left
+right
+```
+
+## Z Scores of Left and Right boundaries
+
+
+```{r citicalZ}
+Zleft = (left-h0)/(sd/sqrt(n))
+Zright = (right-h0)/(sd/sqrt(n))
+Zleft
+Zright
+```
+
+Calculate the probability of this type one error (note: this should equal alpha)
+
+```{r type1}
+type1 = (1-(pnorm(Zright))) + pnorm(Zleft)
+type1
+```
+
+Calculate the power
+
+```{r power}
+assumed = c(55,56,57,58,59,60,61,62,63) #assumed h1 hypothesis
+#calculate the 
+(zleft = (left-assumed)/(sd/sqrt(n)))
+(zright = (right-assumed)/(sd/sqrt(n)))
+(power = pnorm(zleft)+(1-pnorm(zright)))
+```
+```{r powerGraph}
+xrange= range(assumed) #range of assumed x values-- can use z scores if desired
+yrange = range(seq(0,1,.05)) #range of power curve #sequence(from, to, by)
+plot(xrange,yrange, type = 'p', x = assumed, y = power) #plot the values
+```
