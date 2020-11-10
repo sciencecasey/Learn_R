@@ -62,3 +62,22 @@ plot(sample)
 
 
 #Calculation for 7.4.19
+#Part 1: is there a statistically sig difference, course v no course
+h0 = 0
+alpha = .05
+sample = c(35, 37, 33, 34, 38, 40, 35, 36, 38, 33, 28, 34, 47, 42, 46)
+sd = sd(sample) #5.0492
+n = length(sample) 
+tstat = t(.05*2, n) #1.7613 #multiplied by 2 since single tail
+ybar = sum(sample)/n #37.066
+t.observed(ybar, h0, sd, n) #28.43149 >2.144, stat sig difference
+conf = ci(ybar, tstat, sd, n) #34.8, 39.4 -- 0 not included! stat sig difference
+#there is a statistically sig. difference from the test
+
+#Part 2: is the difference equal to 40?
+h0 = 40
+tstat = t(alpha, n) #2.1447
+t.observed(ybar, h0, sd, n) #-2.249 -- this is less than -2.1447, reject
+conf = ci(ybar, tstat, sd, n) #verify same: (34.3, 39.9) -- 40 just outside this! reject the null
+#Difference not statistically equal to 40
+
